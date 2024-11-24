@@ -273,7 +273,7 @@ function aktipesan3() {
     new TypeIt("#pesan8", {
         strings: ["" + vketik8, "" + vketik9],
         startDelay: 20,
-        speed: 1,
+        speed: 45,
         cursor: true,
         deleteSpeed: 30,
         breakLines: false,
