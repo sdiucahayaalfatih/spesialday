@@ -65,25 +65,45 @@ function initengahan(){
   function otolanj(){kalimat.style="opacity:1";}
 
   function aktipesan1(){kalimat.innerHTML=pesan1.innerHTML;kolombaru.style="position:relative;opacity:1;transform:scale(1);";}
-  vketik2=pesan2.innerHTML;
-  function aktipesan2(){
-    wallpaper.style="transform: scale(1.5);";
-    kolombaru.style="";
+  vketik2 = pesan2.innerHTML;
+
+function aktipesan2() {
+    wallpaper.style = "transform: scale(1.5);";
+    kolombaru.style = "";
     kalimat.innerHTML = "Terimakasih sudah memecahkan balonnya, Harap Tunggu 😊...";
+    
     new TypeIt("#kalimat", {
-      strings: [kalimat.innerHTML],
-      startDelay: 20,
-      speed: 40,
-      cursor: true,
-      deleteSpeed: 20,
-      breakLines: false,
-      waitUntilVisible: true,
-      lifelike: true,
-      afterComplete: function(){
-        setTimeout(aktipesan3, 500);  // Melanjutkan ke pesan berikutnya
-      },
+        startDelay: 20,
+        speed: 40,
+        cursor: true,
+        deleteSpeed: 20,
+        breakLines: false,
+        waitUntilVisible: true,
+        lifelike: true,
+        afterComplete: function() {
+            setTimeout(() => {
+                kalimat.innerHTML = "3";
+                hitunganMundur(3); // Mulai hitungan mundur
+            }, 500); // Tunggu sebentar sebelum memulai hitungan mundur
+        },
     }).go();
-  }
+}
+
+// Fungsi untuk melakukan hitungan mundur
+function hitunganMundur(start) {
+    let count = start;
+    const interval = setInterval(() => {
+        count--;
+        if (count > 0) {
+            kalimat.innerHTML = `${count}`;
+        } else {
+            clearInterval(interval);
+            kalimat.innerHTML = "Gooo!"; // Pesan akhir setelah hitungan selesai
+            setTimeout(aktipesan3, 500); // Lanjutkan ke pesan berikutnya
+        }
+    }, 1000); // Hitung mundur setiap 1 detik
+}
+
 // Elemen audio
 const popSound = document.getElementById("popSound");
 
